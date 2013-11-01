@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var canvas = document.getElementById('canvas');
   if(!canvas) {
-    alert("Impossible de récupérer le cancas !");
+    alert("Impossible de récupérer le canvas !");
     return;
   }
   var ctx = canvas.getContext('2d');
@@ -20,15 +20,15 @@ $(document).ready(function() {
       case 37: // Left
         game.player.move(-1,0);
         break;
-      case 38: // Top
+      /*case 38: // Top
         game.player.move(0,-1);
-        break;
+        break;*/
       case 39: // Right
         game.player.move(1,0);
         break;
-      case 40: // Bottom
+      /*case 40: // Bottom
         game.player.move(0,1);
-        break;
+        break;*/
       case 32: // Space
         game.player.shoot();
         break;
@@ -52,34 +52,32 @@ Game.prototype.update = function() {
     self.update();
   }, 40); // 1 frame each 40 ms - 25fps
   // Moving the clouds :
-	if(this.clouds_step != 76)
-	{
-		this.clouds_step++;
-		this.clouds.forEach(function(cloud) {
-			cloud.move(4,0);
-		});
-	}
-	else
-	{
-		this.clouds_step = 0;
-		this.clouds.forEach(function(cloud) {
-			cloud.move(-304,16);
-		});
-	}
-   // Collisions :
-   this.clouds.forEach(function(cloud) {
-		var i;
-			for(i = 0; i < cloud.game.beams.length; i++)
-			{
-				if((cloud.game.beams[i].pos.x >= cloud.pos.x) && (cloud.game.beams[i].pos.x <= (cloud.pos.x+cloud.width)) && (cloud.game.beams[i].pos.y >= cloud.pos.y) && (cloud.game.beams[i].pos.y <= (cloud.pos.y+cloud.heigth)))
-				{// Ne fonctionne pas \o
-					cloud.game.removeBeam(cloud.game.beams[i]);
-					var id = cloud.game.clouds.indexOf(cloud);
-					cloud.game.clouds.splice(id,1);
-				}
-			}
-		});
-  
+  if(this.clouds_step != ((512+200)/4))
+  {
+    this.clouds_step++;
+    this.clouds.forEach(function(cloud) {
+      cloud.move(4,0);
+    });
+  }
+  else
+  {
+    this.clouds_step = 0;
+    this.clouds.forEach(function(cloud) {
+      cloud.move(-712,16);
+    });
+  }
+  // Collisions :
+  this.clouds.forEach(function(cloud) {
+    for(var i = 0; i < cloud.game.beams.length; i++)
+  {
+      if((cloud.game.beams[i].pos.x >= cloud.pos.x) && (cloud.game.beams[i].pos.x <= (cloud.pos.x+cloud.width)) && (cloud.game.beams[i].pos.y >= cloud.pos.y) && (cloud.game.beams[i].pos.y <= (cloud.pos.y+cloud.heigth)))
+      {// Ne fonctionne pas \o
+        cloud.game.removeBeam(cloud.game.beams[i]);
+        var id = cloud.game.clouds.indexOf(cloud);
+        cloud.game.clouds.splice(id,1);
+      }
+    }
+  });
 };
 Game.prototype.render = function() {
   this.ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
@@ -93,16 +91,13 @@ Game.prototype.render = function() {
 };
 Game.prototype.newWave = function() {
   this.clouds = [];
-  var i;
-  for(i =0; i < 5; i++)
-  {
-	this.clouds.push(new Cloud(this,8+i*40,5));
+  for(var i =0; i < 5; i++) {
+    this.clouds.push(new Cloud(this,(i*40)-200,5));
   }
 };
-
 Game.prototype.removeBeam = function(beam) {
-	var id = this.beams.indexOf(beam);
-	this.beams.splice(id,1);
+  var id = this.beams.indexOf(beam);
+  this.beams.splice(id,1);
 };
 
 // Player object
@@ -164,8 +159,8 @@ function Beam(game, x, y) {
 Beam.prototype.render = function() {
   if(this.pos.y < 0)
   {
-	this.game.removeBeam(this);
-	return;
+    this.game.removeBeam(this);
+    return;
   }
   /*this.game.ctx.beginPath();
 console.log(this.pos.x, this.pos.y);
@@ -194,8 +189,8 @@ function Cloud(game, x, y) {
 Cloud.prototype.render = function() {
   this.game.ctx.drawImage(this.img, this.pos.x, this.pos.y, this.width, this.height);
 };
-
 Cloud.prototype.move = function(x,y) {
   this.pos.x += x ;
   this.pos.y += y ;
 };
+
