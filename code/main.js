@@ -43,9 +43,12 @@ function Game(ctx) {
   this.clouds = [];
   this.clouds_step = 0; // When we move the clouds we add 1 to this, when it reaches 50, it's reset to 0 and the clouds go down.
   this.player = new Player(this);
+  this.score = 0;
+  this.is_stopped = false;
   return this;
 };
 Game.prototype.update = function() {
+  if(this.is_stopped) return;
   var self = this;
   this.render();
   setTimeout(function() {
@@ -66,16 +69,25 @@ Game.prototype.update = function() {
       cloud.move(-712,16);
     });
   }
-  // Collisions :
+  // Collisions
   this.clouds.forEach(function(cloud) {
-    for(var i = 0; i < cloud.game.beams.length; i++)
-  {
-      if((cloud.game.beams[i].pos.x >= cloud.pos.x) && (cloud.game.beams[i].pos.x <= (cloud.pos.x+cloud.width)) && (cloud.game.beams[i].pos.y >= cloud.pos.y) && (cloud.game.beams[i].pos.y <= (cloud.pos.y+cloud.heigth)))
-      {// Ne fonctionne pas \o
-        cloud.game.removeBeam(cloud.game.beams[i]);
-        var id = cloud.game.clouds.indexOf(cloud);
-        cloud.game.clouds.splice(id,1);
+    // Beams
+    for(var i = 0; i < self.beams.length; i++) {
+      if ( (self.beams[i].pos.x >= cloud.pos.x)
+        && (self.beams[i].pos.x <= (cloud.pos.x+cloud.width))
+        && (self.beams[i].pos.y >= cloud.pos.y)
+        && (self.beams[i].pos.y <= (cloud.pos.y+cloud.height)))
+      {
+        self.removeBeam(self.beams[i]);
+        cloud.die();
       }
+    }
+    // Player
+    if ( (self.player.pos.x >= cloud.pos.x)
+      && (self.player.pos.x <= (cloud.pos.x+cloud.width))
+      && (self.player.pos.y >= cloud.pos.y)
+      && (self.player.pos.y <= (cloud.pos.y+cloud.height))) {
+      self.stop();
     }
   });
 };
@@ -91,6 +103,7 @@ Game.prototype.render = function() {
 };
 Game.prototype.newWave = function() {
   this.clouds = [];
+  this.clouds_step = 0;
   for(var i =0; i < 5; i++) {
     this.clouds.push(new Cloud(this,(i*40)-200,5));
   }
@@ -98,6 +111,12 @@ Game.prototype.newWave = function() {
 Game.prototype.removeBeam = function(beam) {
   var id = this.beams.indexOf(beam);
   this.beams.splice(id,1);
+};
+Game.prototype.stop = function() {
+  this.is_stopped = true;
+  this.ctx.font = "20pt sans-serif";
+  this.ctx.strokeStyle = "rgb(0,0,0)";
+  this.ctx.fillText("Game Over", 200, 250);
 };
 
 // Player object
@@ -192,5 +211,12 @@ Cloud.prototype.render = function() {
 Cloud.prototype.move = function(x,y) {
   this.pos.x += x ;
   this.pos.y += y ;
+};
+Cloud.prototype.die = function() {
+  var id = this.game.clouds.indexOf(this);
+  this.game.clouds.splice(id,1);
+  this.game.score += 10;
+  $('#score').text(this.game.score);
+  if(this.game.clouds.length == 0) this.game.newWave();
 };
 
