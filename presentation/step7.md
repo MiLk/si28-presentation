@@ -77,3 +77,5 @@ Game.prototype.update = function() {
 });
 ```
 
+[Retour à l'étape précédente](step6.md)
+

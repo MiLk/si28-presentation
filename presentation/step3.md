@@ -43,3 +43,5 @@ Game.prototype.render = function() {
 });
 ```
 
+[Retour à l'étape précédente](step2.md) - [Aller à la prochaine étape](step4.md)
+

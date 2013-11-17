@@ -92,3 +92,5 @@ Player.prototype.shoot = function() {
   });
 ```
 
+[Retour à l'étape précédente](step5.md) - [Aller à la prochaine étape](step7.md)
+

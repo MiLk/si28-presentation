@@ -35,3 +35,5 @@ setTimeout(function(){
 // Déclaration de le classe Game
 ```
 
+[Retour à l'étape précédente](step1.md) - [Aller à la prochaine étape](step3.md)
+

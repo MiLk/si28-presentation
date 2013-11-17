@@ -15,3 +15,5 @@ Afin de pouvoir dessiner sur notre page, il va nous falloir créer un canvas et 
   }
 ```
 
+[Retour à l'étape précédente](step0.md) - [Aller à la prochaine étape](step2.md)
+

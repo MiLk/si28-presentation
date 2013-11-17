@@ -97,3 +97,5 @@ setTimeout(function(){
 }, 0); 
 ```
 
+[Retour à l'étape précédente](step4.md) - [Aller à la prochaine étape](step6.md)
+

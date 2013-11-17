@@ -35,3 +35,5 @@ Player.prototype.move = function(x,y) {
 // Définition de la classe Game
 ```
 
+[Retour à l'étape précédente](step3.md) - [Aller à la prochaine étape](step5.md)
+
