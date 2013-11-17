@@ -48,14 +48,23 @@ $('p').on('click', function() {
 
 ## POO en JS
 
-objet basique
+La programmation orientée objet permet de réaliser des applications avec un raisonnement proche de ce qu'il se passe dans la réalité.
+Chaque objet représente un concept, une idée ou une entité physique.
+Les objets peuvent vivre d'eux-même ou bien communiquer avec les autres objets.
 
+Un objet est une structure de données qui contient des attributs et des fonctions.
+Une classe permet de définir la structure de chaque objet, et un objet est une instance de classe.
+
+Le code suivant définit une classe `Foo` avec un attribut `attr` et une méthode `bar`.
+Il instancie ensuite un objet `foo` et utilise la méthode `bar`.
+```javascript
 function Foo() {
-
+  this.attr = null;
 }
 Foo.prototype.bar = function() {
   console.log('Hello World!');
 }
 var foo = new Foo();
 foo.bar();
+```
 
