@@ -1,4 +1,4 @@
-# step 5 : Ajout des ennemis
+# Step 5 : Ajout des ennemis
 
 Nous allons maintenant ajouter des ennemis à notre jeu.
 Nous allons créer des nuages qui se déplacent de gauche à droite sur la même ligne.

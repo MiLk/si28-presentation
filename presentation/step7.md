@@ -1,11 +1,11 @@
 # Step 7 : collision
 
-- logique de collision (projectile et joueurs > points, nuages > carrés)
-- Mise à jour du score
-- Arrêt du jeu
-
 Il faut faire en sorte que lorsqu'un laser touche un nuage, le laser et le nuage soient supprimés.
 Il faut aussi faire en sorte que lorsqu'un nuage touche le joueur, la partie s'arrête.
+
+Chaque objet peut être représenté par un rectangle, et lorsque deux rectangles se touchent, les objets rentrent en collision.
+Pour simplifier, ici les lasers et le joueur sont représentés par des points.
+A chaque fois c'est l'origine de l'image, soit le coin supérieur gauche.
 ```javascript
 Game.prototype.update = function() {
 ...
@@ -61,7 +61,8 @@ function Game(ctx) {
   this.ctx = ctx;
   this.beams = [];
   this.clouds = [];
-  this.clouds_step = 0; // When we move the clouds we add 1 to this, when it reaches 50, it's reset to 0 and the clouds go down.
+  this.clouds_step = 0; // When we move the clouds we add 1 to this,
+                        // when it reaches 50, it's reset to 0 and the clouds go down.
   this.player = new Player(this);
   this.score = 0;
   this.is_stopped = false;
