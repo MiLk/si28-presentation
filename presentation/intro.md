@@ -11,11 +11,32 @@
 
 ## jQuery
 
-- Permet de simplifier l'écriture du javascript.
-- document.ready > attendre le chargement de la page pour pouvoir écouter les événements sur un élément particulier
+jQuery est une bibliothèque qui permet de simplifier l'écriture du JavaScript.
+Elle comporte notamment des fonctions pour manipuler l'arbre DOM, gérer les événements et modifier les feuilles de styles CSS.
 
-- on('click')
-  -> ajout de texte dans un bloc
+Pour pouvoir l'utiliser, il suffit d'insérer un fichier javascript sur sa page avec le code suivant:
+```html
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+```
+
+Avant d'utiliser les fonctions de jQuery, il faut executer le code suivant,
+qui s'assure que l'ensemble de la page est prête pour être travaillée.
+```javascript
+$(document).ready(function() {
+});
+```
+
+Par exemple, pour réagir au clic sur un élément et modifier le texte à l'intérieur, on utilise le code suivant.
+```html
+<p>
+Click here!
+</p>
+```
+```javascript
+$('p').on('click', function() {
+  $(this).text('Hello world!'):
+});
+```
 
 ## canvas
 
