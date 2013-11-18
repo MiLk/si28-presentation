@@ -19,10 +19,11 @@ Pour pouvoir l'utiliser, il suffit d'insérer un fichier javascript sur sa page 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 ```
 
-Avant d'utiliser les fonctions de jQuery, il faut executer le code suivant,
-qui s'assure que l'ensemble de la page est prête pour être travaillée.
+Avant d'utiliser les fonctions de jQuery, il faut exécuter le code suivant,
+qui s'assure que l'ensemble de la page est prête, avant de pouvoir lier des événements aux différents éléments.
 ```javascript
 $(document).ready(function() {
+  // Votre code
 });
 ```
 
@@ -33,8 +34,10 @@ Click here!
 </p>
 ```
 ```javascript
-$('p').on('click', function() {
-  $(this).text('Hello world!'):
+$(document).ready(function() {
+  $('p').on('click', function() {
+    $(this).text('Hello world!'):
+  });
 });
 ```
 
@@ -67,4 +70,6 @@ Foo.prototype.bar = function() {
 var foo = new Foo();
 foo.bar();
 ```
+
+[Aller à la prochaine étape](step0.md)
 

@@ -1,6 +1,6 @@
 # Step 1 : Récupération du canvas
 
-Afin de pouvoir dessiner sur notre page, il va nous falloir créer un canvas et le récupérer son contexte dans le JavaScript pour pouvoir l'utiliser.
+Afin de pouvoir dessiner sur notre page, il va nous falloir créer un canvas et récupérer son contexte dans le JavaScript pour pouvoir l'utiliser.
 
 ```javascript
   var canvas = document.getElementById('canvas');
