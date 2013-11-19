@@ -6,8 +6,17 @@
 - Essentiellement utilisé pour manipuler l'arbre DOM.
 - Avec HTML5, beacoup de nouvelles possiblités sont offertes.
 
-- on('click')
-  -> ajout de texte dans un bloc
+```html
+<p>
+Click here!
+</p>
+```
+```javascript
+var p = document.getElementsByTagName("p");
+p[0].onclick = function(e) {
+  this.innerHTML = 'Hello World!';
+};
+```
 
 ## jQuery
 
@@ -43,10 +52,20 @@ $(document).ready(function() {
 
 ## canvas
 
-- images (drawImage)
-- dessiner formes (rectangle, arc de cercle)
+Il permet de dessiner des images ou des formes (rectangles, arcs de cercle, ...) directemment dans la page web.
 
-- liste de quelques fonctions
+- liste de quelques fonctions:
+  - clearRect()
+  - fillRect()
+  - strokeRect()
+  - beginPath()
+  - fill()
+  - stoke()
+  - fillText()
+  - strokeText()
+  - drawImage()
+  - moveTo()
+  - lineTo()
 
 
 ## POO en JS
