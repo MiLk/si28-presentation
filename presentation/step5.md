@@ -37,7 +37,7 @@ Il faut ajouter deux nouvelles variables à la classe `Game`, une première pour
 function Game(ctx) {
   this.ctx = ctx;
   this.clouds = [];
-  this.clouds_step = 0; // When we move the clouds we add 1 to this, when it reaches 50, it's reset to 0 and the clouds go down.
+  this.clouds_step = 0;
   this.player = new Player(this);
   return this;
 };
