@@ -1,5 +1,7 @@
 # Step 0 : Initialisation
 
+Récupérer le HTML, le CSS et les images à l'adresse suivante: https://github.com/MiLk/si28-presentation/tree/master/code
+
 ```javascript
 $(document).ready(function() {
 
