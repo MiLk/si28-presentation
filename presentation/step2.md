@@ -14,6 +14,7 @@ function Game(ctx) {
   return this;
 };
 Game.prototype.update = function() {
+  var self = this;
   this.render();
   setTimeout(function() {
     self.update();
